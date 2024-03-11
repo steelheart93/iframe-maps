@@ -31,42 +31,42 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function(){
-        // Leer parámetros de la URL
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
+$(document).ready(function(){
+    // Función para obtener parámetros de la URL
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
-        // Obtener las coordenadas de la URL
-        var lat = getParameterByName('lat');
-        var lng = getParameterByName('lng');
+    // Leer coordenadas de la URL
+    var lat = getParameterByName('lat');
+    var lng = getParameterByName('lng');
 
-        // Si se encuentran las coordenadas en la URL, actualizar los inputs y el mapa
-        if (lat !== null && lng !== null) {
-            $('#lat').val(lat);
-            $('#lng').val(lng);
+    // Actualizar inputs y mapa si las coordenadas están presentes en la URL
+    if (lat !== null && lng !== null) {
+        $('#lat').val(lat);
+        $('#lng').val(lng);
 
-            // Actualizar el src del iframe para incluir las coordenadas en la URL del mapa
-            var mapSrc = 'mapa.html?lat=' + lat + '&lng=' + lng;
-            $('#mapFrame').attr('src', mapSrc);
-        }
+        // Actualizar el src del iframe para incluir las coordenadas en la URL del mapa
+        $('#mapFrame').attr('src', 'mapa.html?lat=' + lat + '&lng=' + lng);
+    }
 
-        // Función para actualizar las coordenadas y recargar la página
-        $('#actualizarCoordenadas').click(function() {
-            var newLat = $('#lat').val();
-            var newLng = $('#lng').val();
-            
-            // Recargar la página con las nuevas coordenadas en la URL
-            window.location.href = 'index.html?lat=' + newLat + '&lng=' + newLng;
-        });
+    // Actualizar coordenadas y recargar la página al hacer clic en el botón
+    $('#actualizarCoordenadas').click(function() {
+        var newLat = $('#lat').val();
+        var newLng = $('#lng').val();
+
+        // Recargar la página con las nuevas coordenadas en la URL
+        window.location.href = 'index.html?lat=' + newLat + '&lng=' + newLng;
     });
+});
 </script>
 
 </body>
