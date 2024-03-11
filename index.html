@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seleccionar Ubicación en Google Maps</title>
+</head>
+<body>
+
+<h1>Seleccionar Ubicación en Colombia en Google Maps</h1>
+
+<label for="lat">Latitud:</label>
+<input type="text" id="lat" readonly>
+<br>
+<label for="lng">Longitud:</label>
+<input type="text" id="lng" readonly>
+<br>
+<button id="actualizarCoordenadas">Actualizar Coordenadas</button>
+
+<iframe id="mapFrame" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+<script>
+// Leer parámetros de la URL
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Obtener las coordenadas de la URL
+var lat = getParameterByName('lat');
+var lng = getParameterByName('lng');
+
+// Si se encuentran las coordenadas en la URL, actualizar los inputs y el mapa
+if (lat !== null && lng !== null) {
+    document.getElementById('lat').value = lat;
+    document.getElementById('lng').value = lng;
+
+    // Actualizar el src del iframe para incluir las coordenadas en la URL del mapa
+    var mapSrc = 'mapa.html?lat=' + lat + '&lng=' + lng;
+    document.getElementById('mapFrame').src = mapSrc;
+}
+
+// Función para actualizar las coordenadas y recargar la página
+document.getElementById('actualizarCoordenadas').addEventListener('click', function() {
+    var newLat = document.getElementById('lat').value;
+    var newLng = document.getElementById('lng').value;
+    
+    // Recargar la página con las nuevas coordenadas en la URL
+    window.location.href = 'index.html?lat=' + newLat + '&lng=' + newLng;
+});
+</script>
+
+</body>
+</html>
