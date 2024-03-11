@@ -17,6 +17,15 @@ El proyecto está dividido en dos páginas:
 4. Puedes arrastrar el marcador para seleccionar una ubicación y las coordenadas se actualizarán en tiempo real en la página principal.
 5. Si deseas cambiar las coordenadas, simplemente modifica los valores en los `<input>` y haz clic en el botón "Actualizar Coordenadas".
 
+## Tips de Uso de la API de Google Maps
+
+- **Atributo Zoom**: Puedes ajustar el nivel de zoom del mapa utilizando el atributo `zoom` en las opciones del mapa. Un valor mayor de zoom acerca la vista del mapa, mientras que un valor menor aleja la vista. Por ejemplo:
+  ```javascript
+  var mapOptions = {
+    center: {lat: 4.5709, lng: -74.2973},
+    zoom: 10 // Nivel de zoom
+  };
+
 ## Configuración
 
 Antes de usar este proyecto, asegúrate de reemplazar `TU_API_KEY` con tu propia clave de API de Google Maps en los archivos `index.html` y `mapa.html`.
@@ -27,11 +36,3 @@ Antes de usar este proyecto, asegúrate de reemplazar `TU_API_KEY` con tu propia
 - CSS
 - JavaScript
 - Google Maps JavaScript API
-
-## Contribuciones
-
-Si encuentras algún error o tienes alguna sugerencia de mejora, no dudes en abrir un issue o enviar un pull request.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
